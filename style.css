@@ -1,0 +1,8 @@
+footer {
+        font-size: 1rem;
+        text-align: left;
+}
+
+.container {
+        display: flex;
+}
