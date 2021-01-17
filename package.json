@@ -1,0 +1,19 @@
+{
+        "name": "phd-thesis",
+        "version": "1.0.0",
+        "description": "Brendan's PhD Thesis Presentation",
+        "main": "index.js",
+        "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1"
+        },
+        "repository": {
+                "type": "git",
+                "url": "git+https://github.com/dukebw/phd-thesis.git"
+        },
+        "author": "Brendan Duke",
+        "license": "ISC",
+        "bugs": {
+                "url": "https://github.com/dukebw/phd-thesis/issues"
+        },
+        "homepage": "https://github.com/dukebw/phd-thesis#readme"
+}
