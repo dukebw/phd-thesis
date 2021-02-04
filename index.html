@@ -171,7 +171,7 @@
                 <section>
                     <ul>
                         <li>This project falls under the "Data Collection for Niche Tasks" problem category</li>
-                        <li>This is because we assume that we may want to create new 3D statistical models of humans with specific goals</li>
+                        <li>This is because we assume that we want to create new 3D statistical models of humans with specialized purposes</li>
                         <li>E.g., we may want to create a 3D statistical model with articulated eyeballs, or with hair as part of the head model</li>
                         <li>Existing methods would require a sophisticated 3D scan setup to collect training data for each new model</li>
                         <li>Furthermore, existing 3D scan datasets are not available for commercial use</li>
@@ -179,6 +179,7 @@
                 </section>
 
                 <section>
+                    <h3>Project Aim</h3>
                     <ul>
                         <li>This project's aim is to learn a 3D statistical model from video data instead of 3D scans</li>
                         <li>Learning from video data would give us the ability to build 3D statistical models from internet-scale data</li>
@@ -189,6 +190,7 @@
                 </section>
 
                 <section>
+                    <h3>Inverse Rendering</h3>
                     <ul>
                         <li>To go from video to 3D model we will use inverse rendering</li>
                         <li>Suppose we have an image I, and parameters $\theta$ describing a scene (e.g., normals, albedo, lighting, geometry, etc.)</li>
@@ -205,14 +207,16 @@
                 </section>
 
                 <section>
+                    <h3>Inverting NeRF to get Face Geometry</h3>
                     <ul>
-                        <li>So, we want to get face geometry $\theta$ from a set of video frames $\{I_j\}$</li>
+                        <li>We want to get face geometry $\theta$ from a set of video frames $\{I_j\}$</li>
                         <li>We propose to do so using Neural Radiance Fields (NeRF) as our differentiable renderer $R$</li>
                         <li>NeRF learns an implicit representation of the scene through a differentiable volumetric renderer</li>
                         <li>For each 3D position $\mathbf{x} = (x, y, z)$ in the scene, NeRF learns a scattering coefficient $\sigma_s(\mathbf{x})$</li>
                         <li>NeRF also learns sRGB colours $c(\mathbf{x}, \Theta)$ for position $\mathbf{x}$ and direction $\Theta$, a standin for irradiance</li>
                         <li>The resulting NeRF model can re-render scenes from novel views, as shown below</li>
                     </ul>
+                    <div class="padding"></div>
                     <div class="container">
                         <div>
                             <video width="100%" height="100%" autoplay muted controls loop preload="metadata" poster="https://storage.googleapis.com/nerf_data/website_renders/images/orchid.jpg" aria-hidden="true">
@@ -236,12 +240,28 @@
                 </section>
 
                 <section>
+                    <h3>Sampling Pseudo 3D Scan from NeRF</h3>
                     <ul>
                         <li>We are interested in using NeRF's learned scattering coefficients $\sigma_s$ and colours $c$</lI>
                         <li>Scattering coefficients $\sigma_s$ give a probability of light scattering at a 3D point</lI>
                         <li>This coefficient should be near 1 close to the surface</lI>
                         <li>Therefore, we could use $\sigma_s$ as a probability distribution describing the surface of a human head</lI>
                         <li>We can sample a point cloud close to the surface to replace 3D scans used in traditional 3DMM building pipelines</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>2D Video to 3DMM Overview</h3>
+                    <img data-src="2d-video-to-3dmm-pipeline.svg" alt="2D Video to 3DMM Pipeline">
+                </section>
+
+                <section>
+                    <h3>Potential Risks</h3>
+                    <ul>
+                        <li>Does NeRF learn a physically meaningful geometry?</li>
+                        <li>May have to regularize NeRF to enforce this</li>
+                        <li>We don't know the foreground / background status of NeRF 3D points a priori</li>
+                        <li>May have to use a technique to segment out human head points from other scene points</li>
                     </ul>
                 </section>
             </section>

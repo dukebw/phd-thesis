@@ -6,3 +6,7 @@ footer {
 .container {
         display: flex;
 }
+
+.padding {
+        height: 1rem;
+}
